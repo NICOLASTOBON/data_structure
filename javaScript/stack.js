@@ -31,17 +31,17 @@ class Stack {
         return this
     }
     pop() {
-        if (this.length > 0) {
-            const holdingPointer = this.top
-            this.top = holdingPointer.next
+        let current = this.top
 
-            this.length -= 1
-
-            if (!this.top) this.bottom = this.top
-
-            return holdingPointer
+        if (this.length === 1) {
+            this.top = this.bottom = null
+        } else {
+            this.top = this.top.next
         }
-        return this
+
+        this.length -= 1
+
+        return current
     }
 }
 
