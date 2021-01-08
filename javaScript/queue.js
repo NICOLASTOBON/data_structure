@@ -21,33 +21,23 @@ class Queue {
             this.first = newNode
             this.last  = newNode
         } else {
-            const holdingPointer = this.last
+            this.last.next = newNode
             this.last = newNode
-            this.last.next = holdingPointer
         }
         this.length += 1
 
         return this
     }
     dequeue() {
-        let current = this.last
+        let current = this.first
 
         if (this.length === 1) {
-            this.last = this.first = null
-            this.length -= 1
+            this.first = this.last = null
         } else {
-            const holdingPointer = this.first
-
-            while(current.next.next) {
-                current = current.next
-            }
-            this.first = current
-            this.first.next = holdingPointer.next
-
-            this.length -= 1
-
-            return holdingPointer
+            this.first = this.first.next
         }
+        this.length -= 1
+
         return current
     }
 }
